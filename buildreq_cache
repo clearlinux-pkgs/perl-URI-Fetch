@@ -1,0 +1,8 @@
+0.13
+perl(Class::ErrorHandler)
+perl(HTTP::Date)
+perl(HTTP::Request)
+perl(LWP::UserAgent)
+perl(Test::RequiresInternet)
+perl(Try::Tiny)
+perl(URI)
