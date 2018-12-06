@@ -87,8 +87,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1URI/Fetch.pm
-/usr/lib/perl5/vendor_perl/5.28.1URI/Fetch/Response.pm
+/usr/lib/perl5/vendor_perl/5.28.1/URI/Fetch.pm
+/usr/lib/perl5/vendor_perl/5.28.1/URI/Fetch/Response.pm
 
 %files dev
 %defattr(-,root,root,-)
