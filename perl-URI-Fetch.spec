@@ -4,7 +4,7 @@
 #
 Name     : perl-URI-Fetch
 Version  : 0.13
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'Smart URI fetching/caching'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-URI-Fetch-license = %{version}-%{release}
+Requires: perl-URI-Fetch-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Class::ErrorHandler)
 BuildRequires : perl(HTTP::Date)
@@ -30,6 +31,7 @@ Smart URI fetching/caching
 Summary: dev components for the perl-URI-Fetch package.
 Group: Development
 Provides: perl-URI-Fetch-devel = %{version}-%{release}
+Requires: perl-URI-Fetch = %{version}-%{release}
 
 %description dev
 dev components for the perl-URI-Fetch package.
@@ -43,18 +45,28 @@ Group: Default
 license components for the perl-URI-Fetch package.
 
 
+%package perl
+Summary: perl components for the perl-URI-Fetch package.
+Group: Default
+Requires: perl-URI-Fetch = %{version}-%{release}
+
+%description perl
+perl components for the perl-URI-Fetch package.
+
+
 %prep
 %setup -q -n URI-Fetch-0.13
-cd ..
-%setup -q -T -D -n URI-Fetch-0.13 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
+cd %{_builddir}/URI-Fetch-0.13
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/URI-Fetch-0.13/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/URI-Fetch-0.13/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -64,7 +76,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -73,8 +85,8 @@ make TEST_VERBOSE=1 test || :
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-URI-Fetch
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/deblicense_copyright
+cp %{_builddir}/URI-Fetch-0.13/LICENSE %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/f2fe11061bb602ab496f54bf497747f9f93f4c15
+cp %{_builddir}/URI-Fetch-0.13/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/808cdef4c992763637fe5a5a7551c6cd5186080b
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -87,8 +99,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/URI/Fetch.pm
-/usr/lib/perl5/vendor_perl/5.28.2/URI/Fetch/Response.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -97,5 +107,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-URI-Fetch/LICENSE
-/usr/share/package-licenses/perl-URI-Fetch/deblicense_copyright
+/usr/share/package-licenses/perl-URI-Fetch/808cdef4c992763637fe5a5a7551c6cd5186080b
+/usr/share/package-licenses/perl-URI-Fetch/f2fe11061bb602ab496f54bf497747f9f93f4c15
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/URI/Fetch.pm
+/usr/lib/perl5/vendor_perl/5.30.1/URI/Fetch/Response.pm
