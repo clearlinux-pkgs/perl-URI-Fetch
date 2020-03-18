@@ -4,7 +4,7 @@
 #
 Name     : perl-URI-Fetch
 Version  : 0.13
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
@@ -86,7 +86,7 @@ make TEST_VERBOSE=1 test || :
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-URI-Fetch
 cp %{_builddir}/URI-Fetch-0.13/LICENSE %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/f2fe11061bb602ab496f54bf497747f9f93f4c15
-cp %{_builddir}/URI-Fetch-0.13/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/808cdef4c992763637fe5a5a7551c6cd5186080b
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-URI-Fetch/808cdef4c992763637fe5a5a7551c6cd5186080b
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -112,5 +112,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/URI/Fetch.pm
-/usr/lib/perl5/vendor_perl/5.30.1/URI/Fetch/Response.pm
+/usr/lib/perl5/vendor_perl/5.30.2/URI/Fetch.pm
+/usr/lib/perl5/vendor_perl/5.30.2/URI/Fetch/Response.pm
