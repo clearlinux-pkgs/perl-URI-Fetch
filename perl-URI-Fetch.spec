@@ -4,7 +4,7 @@
 #
 Name     : perl-URI-Fetch
 Version  : 0.13
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
@@ -112,5 +112,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/URI/Fetch.pm
-/usr/lib/perl5/vendor_perl/5.30.3/URI/Fetch/Response.pm
+/usr/lib/perl5/vendor_perl/5.32.1/URI/Fetch.pm
+/usr/lib/perl5/vendor_perl/5.32.1/URI/Fetch/Response.pm
