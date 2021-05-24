@@ -4,7 +4,7 @@
 #
 Name     : perl-URI-Fetch
 Version  : 0.13
-Release  : 21
+Release  : 22
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/URI-Fetch-0.13.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libx/libxml-feed-perl/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
@@ -21,6 +21,7 @@ BuildRequires : perl(LWP::UserAgent)
 BuildRequires : perl(Test::RequiresInternet)
 BuildRequires : perl(Try::Tiny)
 BuildRequires : perl(URI)
+Patch1: build.patch
 
 %description
 This archive contains the distribution URI-Fetch,
@@ -61,6 +62,7 @@ tar xf %{_sourcedir}/libxml-feed-perl_0.53+dfsg-1.debian.tar.xz
 cd %{_builddir}/URI-Fetch-0.13
 mkdir -p deblicense/
 cp -r %{_builddir}/debian/* %{_builddir}/URI-Fetch-0.13/deblicense/
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
