@@ -1,8 +1,5 @@
-0.13
+0.14
 perl(Class::ErrorHandler)
-perl(HTTP::Date)
-perl(HTTP::Request)
 perl(LWP::UserAgent)
 perl(Test::RequiresInternet)
-perl(Try::Tiny)
 perl(URI)
