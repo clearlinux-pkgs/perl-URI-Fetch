@@ -1,4 +1,4 @@
-0.14
+0.15
 perl(Class::ErrorHandler)
 perl(LWP::UserAgent)
 perl(Test::RequiresInternet)
